@@ -1,19 +1,18 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
-
+import { categories } from "./mock/mockData.js";
+import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx';
 
 function App() {
+
+  const title = "Equipos";
   return (
     <>
-      <Navbar/>
-      <div>
-        <h1>Hola</h1>
-        <h2>as</h2>
-      </div>
-      
+      <Navbar categories={categories} title="Copa América"/>
+      <ItemListContainer title={title} />
     </>
     
   );
-}
+};
 
 export default App;
