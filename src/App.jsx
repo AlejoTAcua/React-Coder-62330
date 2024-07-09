@@ -1,7 +1,7 @@
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
 import { categories } from "./mock/mockData.js";
-import ItemListContainer from './components/ItemListContainer/ItemListContainer.jsx';
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer.jsx";
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Navbar categories={categories} title="Copa América"/>
-      <ItemListContainer title={title} />
+      <ItemListContainer title={title} greeting={"Bienvenidos al Torneo"}/>
     </>
     
   );

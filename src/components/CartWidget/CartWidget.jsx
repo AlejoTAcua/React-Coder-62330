@@ -1,5 +1,5 @@
 const CartWidget = () => {
-    return <div>🛒07</div>
+    return <div className="cartwidget">🛒07</div>
 };
 
 export default CartWidget;
