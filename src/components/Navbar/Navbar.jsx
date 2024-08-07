@@ -1,23 +1,21 @@
 import CartWidget from "../CartWidget/CartWidget";
+import NavbarLink from "./NavbarLink";
 import "./Navbar.css";
+import { categories } from "../../mock/mockData";
 
-const Navbar = ({ categories, title }) => {
+const Navbar = ({ title }) => {
 
     return(
         <>
             <div className="header">
-                <div>
+                <div className="logo">
+                    <img src="https://res.cloudinary.com/jualbe/image/upload/v1722397929/8504bc4b-621c-45d3-9a08-7468418d3561_teewrs.jpg" alt="Logo"></img>
                     <h1> {title} </h1>
                 </div>
                 <nav className="navItems">
-                    <a href="#" className="navItem"> {categories[0]} </a>
-                    <a href="#" className="navItem"> {categories[1]} </a>
-                    <a href="#" className="navItem"> {categories[2]} </a>
-                    <a href="#" className="navItem"> {categories[3]} </a>
-                    <a href="#" className="navItem"> {categories[4]} </a>
-                    <a href="#" className="navItem"> {categories[5]} </a>
-                    <a href="#" className="navItem"> {categories[6]} </a>
-                    <a href="#" className="navItem"> {categories[7]} </a>
+                    {categories.map((element,index)=>{
+                        return <NavbarLink key={index} category={element} />
+                    })}
                 </nav>
                 <CartWidget />
             </div>

@@ -6,9 +6,11 @@
 
     & h1{
         text-align: center;
-        position: relative;
-        top: 20px;
         color: aliceblue;
+    }
+    
+    & logo{
+        width: auto;
     }
 }
 

@@ -1,0 +1,20 @@
+.tarjeta{
+    border: black 1px solid;
+    width: 25%;
+    height: auto    ;
+    display: flex;
+    flex-direction: column;
+    justify-content:space-evenly;
+    align-items: center;
+
+    .titleProduct{
+        font-size: 2rem;
+    }
+    .textProduct{
+        text-align: center;
+    }
+    img{
+        width: 70%;
+        height: auto;
+    }
+}
