@@ -2,7 +2,6 @@ export const categories = ["Fotocabina","Espejo Mágico","Plataforma 360", "Otro
 
 export const products = [
     {
-        id:1,
         title:"Fotocabina",
         price: 55000,
         description: "Cabina Fotográfica inflable para realizar fotos ilimitadas e impresión instantánea",
@@ -11,7 +10,6 @@ export const products = [
         stock: 5,
     },
     {
-        id:2,
         title:"Espejo Mágico",
         price: 55000,
         description: "Espejo Mágico para realizar fotos ilimitadas e impresión instantánea",
@@ -20,7 +18,6 @@ export const products = [
         stock: 3,
     },
     {
-        id:3,
         title:"Plataforma 360",
         price: 60000,
         description: "Base de 90cm de diametro con brazo para realizar fotos y videos en cámara lenta, Slow Motion",
@@ -29,7 +26,6 @@ export const products = [
         stock: 2,
     },
     {
-        id:4,
         title:"Stand Gliter",
         price: 20000,
         description: "aaa",
@@ -38,7 +34,6 @@ export const products = [
         stock: 4,
     },
     {
-        id:5,
         title:"Iluminación y Sonido",
         price: 40000,
         description: "aaa",

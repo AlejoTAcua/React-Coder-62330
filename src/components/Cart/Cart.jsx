@@ -1,4 +1,5 @@
 import { useCartContext } from "../../context/CartContext"
+import "./Cart.css"
 
 const Cart = () => {
     const { cart, total, removeItem, clearCart } = useCartContext();
@@ -13,33 +14,31 @@ const Cart = () => {
 
 
     return(
-        <>
-            <div>
-                <li>id</li>
-                <li>title</li>
-                <li>price</li>
-                <li>qty</li>
-                <li>actions</li>
+        <div className="container">
+            <div className="first">
+                <div>Title</div>
+                <div>Price</div>
+                <div>Qty</div>
+                <div>Actions</div>
             </div>
-            <div>
+            <div className="products">
                 {cart.map(({id, title, price, qty }, index) => {
                     return (
-                        <ul key={index}>
-                            <li>{id}</li>
-                            <li>{title}</li>
-                            <li>{price}</li>
-                            <li>{qty}</li>
-                            <li><button onClick={() => handleRemoveItem(id, price, qty)}>Remove Item</button></li>
-                        </ul>
+                        <div className="product" key={index}>
+                            <div>{title}</div>
+                            <div>$ {price}</div>
+                            <div>{qty}</div>
+                            <div><button onCdivck={() => handleRemoveItem(id, price, qty)}>Remove Item</button></div>
+                        </div>
                     )}
                 )}
             </div>
-            <div>
+            <div className="price">
                 <div>Total Price</div>
                 <div>$ {total}</div>
             </div>
-            <button onClick={handleClearCart}>Clear Cart</button>
-        </>
+            <button onCdivck={handleClearCart}>Clear Cart</button>
+        </div>
     )
 
 
