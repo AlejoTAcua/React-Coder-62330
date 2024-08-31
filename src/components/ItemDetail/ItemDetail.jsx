@@ -1,8 +1,15 @@
-import "../Item/Item.css"
+import "../Item/Item.css";
+import ItemCount from "../ItemCount/ItemCount.jsx";
+import { useCartContext } from "../../context/CartContext.jsx";
 
 const ItemDetail = ({product}) => {
+    const {title, description, price, image, id, stock} = product;
 
-    const {title, description, price, image, id} = product;
+    const { addToCart } = useCartContext();
+    const handleOnBuy = (cantidad) => {
+        const item = {title, description, price, image, id, stock}
+        addToCart( item, cantidad ); 
+    }
 
     return(
         <>
@@ -12,7 +19,7 @@ const ItemDetail = ({product}) => {
                 <div className="textProduct">{description}</div>
                 <div>${price}</div>
                 <div>{id}</div>
-                <button>Comprar</button>
+                <ItemCount stock={stock} initial={1} handleOnBuy={handleOnBuy}/>
             </div>
         </>
     )

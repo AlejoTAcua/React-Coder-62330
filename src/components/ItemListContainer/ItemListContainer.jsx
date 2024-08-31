@@ -1,33 +1,55 @@
 import { useState, useEffect } from "react";
+import { collection, getDocs, query, where } from "firebase/firestore"
+import { db } from "../../firebase/dbConnection.js";
 import ItemList from "../ItemList/ItemList.jsx";
 import "./ItemListContainer.css";
-import { getProducts } from "../../utils/fetchData.js";
 import { useParams } from "react-router-dom";
 import { Spinner } from "../Spinner/Spinner.jsx";
+import { useCartContext } from "../../context/CartContext.jsx";
 
-
-const ItemListContainer = ({ title, greeting }) =>{
+const ItemListContainer = () => {
     const [ products, setProducts ] = useState([]);
-    /* const [ cat, setCat ] = useState("Foto"); */
     const { categoryId } = useParams();
     const [ loading , setLoading ] = useState(true);
+    const { titulo } = useCartContext();
+    let title = titulo;
     
     useEffect(()=>{
-        console.log('Se renderizo el componente');
         setLoading(true);
-        getProducts(categoryId)
-            .then((res) => {
-                console.log('Se ejecuto la promesa')
-                setProducts(res);
-                console.log('Se actualizaron los productos')
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => {
-                console.log('Finalizo la promesa');
-                setLoading(false);
-            });
+        let productsCollection = collection(db, "productos")
+
+        if (categoryId){
+            productsCollection = query(productsCollection,where("category", "array-contains", categoryId));
+
+            getDocs(productsCollection)
+                        .then(({docs}) =>{
+                            const prodFromDocs = docs.map((doc)=>({
+                                id: doc.id,
+                                ...doc.data()
+                        }))
+                        setProducts(prodFromDocs)
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("Error getting documents: ", error)
+                    });
+        } else {
+            getDocs(productsCollection)
+                        .then(({docs}) =>{
+                            const prodFromDocs = docs.map((doc)=>({
+                                id: doc.id,
+                                ...doc.data()
+                        }))
+                        setProducts(prodFromDocs)
+                        setLoading(false);
+                    })
+                    .catch((error) => {
+                        console.error("Error getting documents: ", error)
+                    });
+        }
+        
+
+        setLoading(false);
     }, [categoryId]);
 
 
@@ -37,20 +59,11 @@ const ItemListContainer = ({ title, greeting }) =>{
             <img className="fondo" src="https://res.cloudinary.com/jualbe/image/upload/v1722916721/Fondo.webp" alt="Fondo de pantalla" />
 
             <div className="container">
-                <div className="title">{greeting}{title}</div>
-                {/* <div className="filter">
-                    <button onClick={()=> setCat("Video")}>Set Cat = Videos</button>
-                    <button onClick={()=> setCat("Foto")}>Set Cat = Fotos</button>
-                    <button onClick={()=> setCat("Plataforma 360")}>Set Cat = Plataforma 360</button>
-                    <button onClick={()=> setCat("Fotocabina")}>Set Cat = Fotocabina</button>
-                    <button onClick={()=> setCat("Espejo Mágico")}>Set Cat = Espejo</button>
-                    <button onClick={()=> setCat("Otros")}>Set Cat = Otros</button>
-                </div> */}
+                <div className="title">{title}</div>
                 {loading
                 ? <Spinner />
                 : (<div className="subcontainer">
                     <ItemList products={products} />
-                    {/* <ItemCount stock={5} initial={1}/> */}
                 </div>)}
             </div>
         </>

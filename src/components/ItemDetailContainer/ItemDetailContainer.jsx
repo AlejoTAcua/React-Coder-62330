@@ -1,29 +1,32 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Spinner } from "../Spinner/Spinner";
-import { getProductById } from "../../utils/fetchData";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import "../ItemListContainer/ItemListContainer.css";
+import { db } from "../../firebase/dbConnection";
+import { collection, getDoc, doc } from "firebase/firestore"
 
 const ItemDetailContainer = () => {
     const [ product, setProduct ] = useState({});
-    const { id } = useParams();
+    const { productId } = useParams();
     const [ loading , setLoading ] = useState(true);
-    
+
     useEffect(() => {
         setLoading(true);
-        getProductById(id)
-            .then((res) => {
-                setProduct(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
+        const productCollection = collection(db, "productos");
+        const refDoc = doc(productCollection, productId);
 
-    },[id]);
+        getDoc(refDoc)
+            .then((doc) =>{
+                setProduct({id: doc.productId, ...doc.data()})
+                setLoading(false);
+            })
+        .catch((error) => {
+            setLoading(false);
+            console.error("Error getting documents: ", error)
+        })
+
+    },[productId])
 
     return (
         <>

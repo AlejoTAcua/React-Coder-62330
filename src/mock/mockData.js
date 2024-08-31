@@ -8,6 +8,7 @@ export const products = [
         description: "Cabina Fotográfica inflable para realizar fotos ilimitadas e impresión instantánea",
         category: ["Fotocabina","Foto"],
         image: "https://res.cloudinary.com/jualbe/image/upload/v1722397319/cabina.jpg",
+        stock: 5,
     },
     {
         id:2,
@@ -16,6 +17,7 @@ export const products = [
         description: "Espejo Mágico para realizar fotos ilimitadas e impresión instantánea",
         category: ["Espejo Mágico","Foto"],
         image: "https://res.cloudinary.com/jualbe/image/upload/v1722397326/espejo.png",
+        stock: 3,
     },
     {
         id:3,
@@ -24,6 +26,7 @@ export const products = [
         description: "Base de 90cm de diametro con brazo para realizar fotos y videos en cámara lenta, Slow Motion",
         category: ["Plataforma 360","Video"],
         image: "https://res.cloudinary.com/jualbe/image/upload/v1722397321/plataforma.png",
+        stock: 2,
     },
     {
         id:4,
@@ -32,6 +35,7 @@ export const products = [
         description: "aaa",
         category: ["Otros"],
         image: "https://res.cloudinary.com/jualbe/image/upload/v1722987756/Glitter.jpg",
+        stock: 4,
     },
     {
         id:5,
@@ -40,5 +44,6 @@ export const products = [
         description: "aaa",
         category: ["Otros"],
         image: "https://res.cloudinary.com/jualbe/image/upload/v1722987740/dj.jpg",
+        stock: 1,
     }
 ];
